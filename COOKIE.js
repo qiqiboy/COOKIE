@@ -23,16 +23,16 @@ var COOKIE=(function(){
  
     return {
         has:function(key){
-            return typeof cks[key]!='undefined';
+            return cks[key]!=null;
         },
         set:function(key,value,expire,path,domain){
             cks[key]=value;
             var myck=escape(key)+'='+escape(value);
-            if(typeof expire!='undefined')
+            if(expire!=null && expire!='session')
                 myck+=';expires='+getDateString(expire);
-			if(typeof path!='undefined')
+			if(path!=null)
                 myck+=';path='+path;
-            if(typeof domain!='undefined')
+            if(domain!=null)
                 myck+=';domain='+domain;
             document.cookie=myck;
         },
