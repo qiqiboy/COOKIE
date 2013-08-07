@@ -1,3 +1,7 @@
+/**
+ * COOKIE v1.1
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/07
+ */
 var COOKIE=(function(){
     var cookie=document.cookie||'',
         subs=cookie.split(';'),
@@ -26,7 +30,6 @@ var COOKIE=(function(){
             return cks[key]!=null;
         },
         set:function(key,value,expire,path,domain){
-            cks[key]=value;
             var myck=escape(key)+'='+escape(value);
             if(expire!=null && expire!='session')
                 myck+=';expires='+getDateString(expire);
@@ -35,10 +38,16 @@ var COOKIE=(function(){
             if(domain!=null)
                 myck+=';domain='+domain;
             document.cookie=myck;
+			return cks[key]=value;
         },
-        remove:function(key){
-            delete cks[key];
-            document.cookie=escape(key)+'=;path=/;expires='+getDateString(-10000);
+        remove:function(key,path,domain){
+			var myck=escape(key)+'=';
+			if(path!=null)
+                myck+=';path='+path;
+            if(domain!=null)
+                myck+=';domain='+domain;
+            document.cookie=myck;
+           	return delete cks[key];
         },
         get:function(key){
             return cks[key];
@@ -47,6 +56,7 @@ var COOKIE=(function(){
 			for(var key in cks){
 				this.remove(key);
 			}
+			return true;
 		},
 		cookies:cks
     }
