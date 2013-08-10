@@ -1,28 +1,20 @@
 /**
- * COOKIE v1.1
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/07
+ * COOKIE v1.2
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/10
  */
 var COOKIE=(function(){
     var cookie=document.cookie||'',
-        subs=cookie.split(';'),
+        subs=cookie.split(/;\s?/),
         cks={},
-        trim=function(str){
-            return str.replace(/^\s+|\s+$/g,'');
-        },
+		_subs,
         getDateString=function(offset){
             var date=new Date();
             date.setTime(+date+offset*1000);
             return date.toGMTString();
         }
     for(var i=0;i<subs.length;i++){
-        var _sub=subs[i];
-        var pos=_sub.indexOf("=");
-        var key,value;
-        if(pos>=0){
-            key=trim(_sub.substring(0,pos));
-            value=_sub.substring(pos+1);
-            cks[unescape(key)]=unescape(value);
-        }
+		_subs=subs[i].split('=')
+		cks[unescape(_subs[0])]=unescape(_subs.slice(1).join('='));
     }
  
     return {
@@ -38,7 +30,8 @@ var COOKIE=(function(){
             if(domain!=null)
                 myck+=';domain='+domain;
             document.cookie=myck;
-			return cks[key]=value;
+			cks[key]=value;
+			return cks;
         },
         remove:function(key,path,domain){
 			var myck=escape(key)+'=';
@@ -47,7 +40,8 @@ var COOKIE=(function(){
             if(domain!=null)
                 myck+=';domain='+domain;
             document.cookie=myck;
-           	return delete cks[key];
+			delete cks[key];
+           	return cks;
         },
         get:function(key){
             return cks[key];
@@ -56,7 +50,7 @@ var COOKIE=(function(){
 			for(var key in cks){
 				this.remove(key);
 			}
-			return true;
+			return this.cookies=cks={};
 		},
 		cookies:cks
     }
