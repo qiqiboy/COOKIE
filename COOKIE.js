@@ -34,14 +34,8 @@ var COOKIE=(function(){
 			return cks;
         },
         remove:function(key,path,domain){
-			var myck=escape(key)+'=';
-			if(path!=null)
-                myck+=';path='+path;
-            if(domain!=null)
-                myck+=';domain='+domain;
-            document.cookie=myck;
-			delete cks[key];
-           	return cks;
+           	delete this.set(key,'',-1000,path,domain)[key];
+return;
         },
         get:function(key){
             return cks[key];
