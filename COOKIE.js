@@ -44,7 +44,7 @@ var COOKIE=(function(){
 			for(var key in cks){
 				this.remove(key);
 			}
-			return this.cookies=cks={};
+			return cks;
 		},
 		cookies:cks
     }
