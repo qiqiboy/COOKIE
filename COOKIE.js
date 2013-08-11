@@ -23,7 +23,7 @@ var COOKIE=(function(){
         },
         set:function(key,value,expire,path,domain){
             var myck=escape(key)+'='+escape(value);
-            if(expire!=null && expire!='session')
+            if(expire=parseFloat(expire))
                 myck+=';expires='+getDateString(expire);
 			if(path!=null)
                 myck+=';path='+path;
