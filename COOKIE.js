@@ -34,7 +34,7 @@ var COOKIE=(function(){
 			return cks;
         },
         remove:function(key,path,domain){
-           	delete this.set(key,'',-1000,path,domain)[key];
+           	delete this.set(key,null,-1000,path,domain)[key];
 return;
         },
         get:function(key){
