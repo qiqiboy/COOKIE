@@ -39,7 +39,7 @@ var COOKIE=(function(){
                 myck+=';path='+path;
             if(domain!=null&&domain!=location.hostname)
                 myck+=';domain='+domain;
-            document.cookie=myck;console.log(myck)
+            document.cookie=myck;
 			return this.refresh().has(key);
         },
         remove:function(key,path,domain){
