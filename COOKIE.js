@@ -32,7 +32,7 @@ var COOKIE=(function(){
             return this.cookies[key];
         },
         set:function(key,value,expire,path,domain){
-            var myck=escape(key)+'='+escape(value);
+            var myck=escape(key)+'='+escape(value==null?'':value);
             if(expire=parseFloat(expire))
                 myck+=';expires='+getDateString(expire);
 			if(path!=null)
@@ -62,12 +62,13 @@ var COOKIE=(function(){
 				this.each(arr,function(i){
 					domains.push(arr.slice(-i).join('.'));
 				});
+				domains.push('.'+domains[0]);
 			}
 
 			this.each(paths,function(){
 				path=this+''||'/';
 				self.each(domains,function(){
-					self.set(key,null,-1000,path,this+'');
+					self.set(key,'',-1000,path,this+'');
 				});
 			});
 			
