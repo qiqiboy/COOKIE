@@ -30,14 +30,13 @@ var COOKIE=(function(){
         get:function(key){
             return this.cookies[key];
         },
-        set:function(key,value,expire,path,domain){
+        set:function(key,value,expire,path,domain,secure){
             var myck=escape(key)+'='+escape(value==null?'':value);
-            if(expire=parseFloat(expire))
+            if(!isNaN(expire=parseFloat(expire)))
                 myck+=';expires='+getDateString(expire);
-			if(path!=null)
-                myck+=';path='+path;
-            if(domain!=null&&domain!=location.hostname)
-                myck+=';domain='+domain;
+			if(path)myck+=';path='+path;
+            if(domain&&domain!=location.hostname)myck+=';domain='+domain;
+			if(secure)myck+=';secure';
             document.cookie=myck;
 			return this.refresh().has(key);
         },
