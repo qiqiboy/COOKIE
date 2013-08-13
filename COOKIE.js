@@ -65,19 +65,19 @@ var COOKIE=(function(){
 			}
 
 			this.each(paths,function(){
-				path=this+''||'/';
+				var path=this+''||'/';
 				self.each(domains,function(){
 					self.set(key,'',-1000,path,this+'');
 				});
 			});
 			
-			return !this.has(key);
+			return !!path||!!domain||!this.has(key);
         },
 		clear:function(path,domain){
 			for(var key in this.cookies){
 				this.remove(key,path,domain);
 			}
-			return this;
+			return !!path||!!domain||!this.length;
 		},
 		each:function(arr,func){
 			var i=0,j=arr.length;
