@@ -30,7 +30,7 @@ var COOKIE=(function(){
         get:function(key){
             return this.cookies[key];
         },
-        set:function(key,value,expire,path,domain,secure,HttpOnly){
+        set:function(key,value,expire,path,domain,secure){
             var myck=escape(key)+'='+escape(value==null?'':value);
             if(!isNaN(expire=parseFloat(expire)))
                 myck+=';expires='+getDateString(expire);
@@ -38,7 +38,7 @@ var COOKIE=(function(){
             if(domain&&domain!=location.hostname)myck+=';domain='+domain;
 			if(secure)myck+=';secure';
             document.cookie=myck;
-			return HttpOnly||this.refresh().has(key);
+			return this.refresh().has(key);
         },
         remove:function(key,path,domain){
 			var paths=[],
