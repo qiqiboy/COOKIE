@@ -37,7 +37,6 @@ var COOKIE=(function(){
 			if(path)myck+=';path='+path;
             if(domain&&domain!=location.hostname)myck+=';domain='+domain;
 			if(secure)myck+=';secure';
-			if(HttpOnly)myck+=';HttpOnly';
             document.cookie=myck;
 			return HttpOnly||this.refresh().has(key);
         },
