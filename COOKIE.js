@@ -47,14 +47,15 @@ var COOKIE=(function(){
 			if(path){
 				paths=[path];
 			}else{
-				arr=location.pathname.split('/');
-				paths.push('/');
+				arr=location.pathname.match(/.*?\/|.+$/g);
 				this.each(arr,function(i){
-					var a=arr.slice(0,i+1);
-					if(a[i]!=''){
-						paths.push(a.join('/'));
-						a.push('');
-						paths.push(a.join('/'));
+					var a;
+					paths.push(a=arr.slice(0,i+1).join(''));
+					if(/[^\/]+\/$/.test(a)){
+						paths.push(a.slice(0,-1));
+					}
+					if(/[^\/]$/.test(a)){
+						paths.push(a+'/');
 					}
 				});
 			}
