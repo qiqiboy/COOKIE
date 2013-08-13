@@ -14,4 +14,6 @@ COOKIE.remove(name,path,domain); //删除名为name的cookie，true表示删除�
 COOKIE.get(name); //获取名为name的cookie的值
 COOKIE.clear(path,domain); //清除所有cookie
 
+//注意：remove和clear方法，如果不设置path或domain，将会删除所有根域、子域、各个深度路径下的cookie。
+
 ````

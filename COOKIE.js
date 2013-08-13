@@ -3,7 +3,6 @@
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/12
  */
 var COOKIE=(function(){
-    
 	var getDateString=function(offset){
 			var date=new Date();
 			date.setTime(+date+offset*1000);
