@@ -1,6 +1,6 @@
 /**
  * COOKIE v1.3
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/12
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/13
  */
 var COOKIE=(function(){
 	var getDateString=function(offset){
@@ -48,11 +48,17 @@ var COOKIE=(function(){
 				paths=[path];
 			}else{
 				arr=location.pathname.split('/');
+				paths.push('/');
 				this.each(arr,function(i){
-					paths.push(arr.slice(0,i+1).join('/'));
+					var a=arr.slice(0,i+1);
+					if(a[i]!=''){
+						paths.push(a.join('/'));
+						a.push('');
+						paths.push(a.join('/'));
+					}
 				});
 			}
-			
+
 			if(domain){
 				domains=[domain];
 			}else{
@@ -64,7 +70,7 @@ var COOKIE=(function(){
 			}
 
 			this.each(paths,function(){
-				var path=this+''||'/';
+				var path=this+'';
 				self.each(domains,function(){
 					self.set(key,'',-1000,path,this+'');
 				});
@@ -76,7 +82,12 @@ var COOKIE=(function(){
 			for(var key in this.cookies){
 				this.remove(key,path,domain);
 			}
-			return !!path||!!domain||!this.length;
+			return !!path||!!domain||function(){
+				for(var key in this.cookies){
+					return false;
+				}
+				return true;
+			}.call(this);
 		},
 		each:function(arr,func){
 			var i=0,j=arr.length;
