@@ -1,5 +1,5 @@
 /**
- * COOKIE v1.3
+ * COOKIE v1.4
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/13
  */
 var COOKIE=(function(){
@@ -8,13 +8,15 @@ var COOKIE=(function(){
 			date.setTime(+date+offset*1000);
 			return date.toGMTString();
 		},
+		encode=encodeURIComponent,
+		decode=decodeURIComponent,
 		getCookies=function(){
 			var cookie=document.cookie||'',
 				subs=cookie.split(/;\s?/),
 				_subs,cks={};
 			for(var i=0;i<subs.length,subs[i];i++){
 				_subs=subs[i].split('=')
-				cks[unescape(_subs[0])]=unescape(_subs.slice(1).join('='));
+				cks[decode(_subs[0])]=decode(_subs.slice(1).join('='));
 			}
 			return cks;
 		}
@@ -31,7 +33,7 @@ var COOKIE=(function(){
             return this.cookies[key];
         },
         set:function(key,value,expire,path,domain,secure){
-            var myck=escape(key)+'='+escape(value==null?'':value);
+            var myck=encode(key)+'='+encode(value==null?'':value);
             if(!isNaN(expire=parseFloat(expire)))
                 myck+=';expires='+getDateString(expire);
 			if(path)myck+=';path='+path;
