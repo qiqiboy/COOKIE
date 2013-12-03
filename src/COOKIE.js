@@ -3,7 +3,7 @@
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/03
  */
  
-var COOKIE=(function(window, constructor, undefined){
+var COOKIE=(function(window, Struct, undefined){
 	"use strict";
 	
 	//一些简单方法
@@ -15,7 +15,9 @@ var COOKIE=(function(window, constructor, undefined){
 		encode=encodeURIComponent,
 		decode=decodeURIComponent;
 		
-	constructor.fn=constructor.prototype={
+	Struct.fn=Struct.prototype={
+		version:'2.0',
+		constructor:Struct,
 		init:function(name){
 			this.name=name||'';
 			this.refresh();
@@ -68,7 +70,7 @@ var COOKIE=(function(window, constructor, undefined){
 				paths=[path];
 			}else{
 				arr=location.pathname.match(/.*?\/|.+$/g);
-				constructor.each(arr,function(i){
+				Struct.each(arr,function(i){
 					var a;
 					paths.push(a=arr.slice(0,i+1).join(''));
 					if(/[^\/]+\/$/.test(a)){
@@ -84,15 +86,15 @@ var COOKIE=(function(window, constructor, undefined){
 				domains=[domain];
 			}else{
 				arr=location.hostname.split('.');
-				constructor.each(arr,function(i){
+				Struct.each(arr,function(i){
 					domains.push(arr.slice(-i).join('.'));
 				});
 				domains.push('.'+domains[0]);
 			}
 
-			constructor.each(paths,function(){
+			Struct.each(paths,function(){
 				var path=this+'';
-				constructor.each(domains,function(){
+				Struct.each(domains,function(){
 					self.set(key,'',-1000,path,this+'');
 				});
 			});
@@ -115,17 +117,17 @@ var COOKIE=(function(window, constructor, undefined){
 	}
 	
 	//修正原型链指向
-	constructor.fn.init.prototype=constructor.fn;
+	Struct.fn.init.prototype=Struct.fn;
 	
 	//将原型上的方法属性再绑定到构造函数上，以实现直接调用
 	var prop,
-		fn=constructor.fn;
+		fn=Struct.fn;
 	for(prop in fn){
-		constructor[prop]=fn[prop];
+		Struct[prop]=fn[prop];
 	}
 	
 	//实现each方法
-	constructor.each=function(arr,func){
+	Struct.each=function(arr,func){
 		var i=0,j=arr.length;
 		for(;i<j;i++){
 			if(func.call(arr[i],i)===false){
@@ -134,7 +136,7 @@ var COOKIE=(function(window, constructor, undefined){
 		}
 	}
 	
-	return constructor.refresh();
+	return Struct.refresh();
 	
 })(window, function(name){
 	return new arguments.callee.fn.init(name);
