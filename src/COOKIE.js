@@ -20,13 +20,13 @@ var COOKIE=(function(ROOT, Struct, undefined){
 		constructor:Struct,
 		init:function(name){
 			this.name=name||'';
-			this.refresh();
+			return this.refresh();
 		},
 		refresh:function(){//刷新对象中cookies
 			this.cookies=this.getCookies();
 			return this;
 		},
-		getCookies:function(){//解析docuemnt.cookie
+		getCookies:function(){//解析document.cookie
 			var cookie=document.cookie||'',
 				testReg=new RegExp('^'+this.getKey('').replace(/([\.\?\+\*/])/g,"\\$1"),'i'),
 				subs=cookie.split(/;\s?/),
