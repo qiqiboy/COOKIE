@@ -3,7 +3,7 @@
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/03
  */
  
-var COOKIE=(function(window, Struct, undefined){
+var COOKIE=(function(ROOT, Struct, undefined){
 	"use strict";
 	
 	//一些简单方法
