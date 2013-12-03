@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Extract</title>
+<script src="src/COOKIE.js"></script>
+</head>
+
+<body>
+<h1>cookike test</h1>
+<p>如何调用？（你可以查看本页面源代码来查看js代码调用示例）</p>
+<pre>
+<script type="text/javascript">
+	var key;
+	document.write('<h3>当前页面中所有cookie如下：</h3>');
+	for(key in COOKIE.cookies){
+		document.writeln(key+':'+COOKIE.cookies[key]);
+	}
+
+	var mycookie=COOKIE('myName');
+	document.write('<h3>当前页面"myName"下的cookie如下：</h3>');
+	for(key in mycookie.cookies){
+		document.writeln(key+':'+mycookie.cookies[key]);
+	}
+
+	
+	function createCookie(){
+		COOKIE.set('test1',1);
+		COOKIE.set('test2',2);
+		COOKIE.set('test3',3);
+		
+		mycookie.set('test1',1);
+		mycookie.set('test2',2);
+		mycookie.set('test3',3);
+		
+		location.reload();
+	}
+	
+</script>
+
+</pre>
+<p>如果页面中没有cookie，可以点此按钮先种下一些随机cookie：<button onclick="createCookie();">生成cookie</button></p>
+<pre>
+生成cookie代码如下：
+function createCookie(){
+    COOKIE.set('test1',1);
+    COOKIE.set('test2',2);
+    COOKIE.set('test3',3);
+    
+    mycookie.set('test1',1);
+    mycookie.set('test2',2);
+    mycookie.set('test3',3);
+}
+</pre>
+</body>
+</html>
