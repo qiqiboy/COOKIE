@@ -10,7 +10,7 @@ var COOKIE=(function(ROOT, Struct, undefined){
 	var getDateString=function(offset){
 			var date=new Date();
 			date.setTime(+date+offset*1000);
-			return date.toGMTString();
+			return date.toUTCString();
 		},
 		encode=encodeURIComponent,
 		decode=decodeURIComponent;
