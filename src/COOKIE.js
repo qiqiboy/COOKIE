@@ -1,9 +1,9 @@
 /**
- * COOKIE v2.0
+ * COOKIE v2.1
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/03
  */
- 
-var COOKIE=(function(ROOT, Struct, undefined){
+;
+(function(ROOT, Struct, NS, undefined){
 	"use strict";
 	
 	//一些简单方法
@@ -136,8 +136,8 @@ var COOKIE=(function(ROOT, Struct, undefined){
 		}
 	}
 	
-	return Struct.refresh();
+	return ROOT[NS]=Struct.refresh();
 	
 })(window, function(name){
 	return new arguments.callee.fn.init(name);
-});
+}, 'COOKIE');
