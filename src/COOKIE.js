@@ -28,7 +28,7 @@
 		},
 		getCookies:function(){//解析document.cookie
 			var cookie=document.cookie||'',
-				testReg=new RegExp('^'+this.getKey('').replace(/([\.\?\+\*/])/g,"\\$1"),'i'),
+				testReg=new RegExp('^'+this.getKey('').replace(/([\.\?\+\*\[\]\(\)\^\$\/])/g,"\\$1"),'i'),
 				subs=cookie.split(/;\s?/),
 				_subs,cks={},i=0,j=subs.length;
 			for(;i<j,subs[i];i++){

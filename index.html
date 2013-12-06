@@ -22,16 +22,19 @@
 	for(key in mycookie.cookies){
 		document.writeln(key+':'+mycookie.cookies[key]);
 	}
-
+	
+	function rand(num){
+		return Math.floor(Math.random()*num);
+	}
 	
 	function createCookie(){
-		COOKIE.set('test1',1);
-		COOKIE.set('test2',2);
-		COOKIE.set('test3',3);
+		COOKIE.set('test'+rand(100),1,365*24*3600);
+		COOKIE.set('test'+rand(100),2,365*24*3600);
+		COOKIE.set('test'+rand(100),3,365*24*3600);
 		
-		mycookie.set('test1',1);
-		mycookie.set('test2',2);
-		mycookie.set('test3',3);
+		mycookie.set('test'+rand(100),1,365*24*3600);
+		mycookie.set('test'+rand(100),2,365*24*3600);
+		mycookie.set('test'+rand(100),3,365*24*3600);
 		
 		location.reload();
 	}
@@ -47,6 +50,7 @@ function createCookie(){
     COOKIE.set('test2',2);
     COOKIE.set('test3',3);
     
+    var mycookie=COOKIE('myName');
     mycookie.set('test1',1);
     mycookie.set('test2',2);
     mycookie.set('test3',3);
@@ -54,5 +58,6 @@ function createCookie(){
 </pre>
 <p>清除页面中所有cookie：<button onclick="COOKIE.clear();location.reload();">清除全部cookie</button></p>
 <p>清除页面中myName下的所有cookie：<button onclick="mycookie.clear();location.reload();">清除cookie</button></p>
+<p>删除页面中myName下某个cookie：<input id="thename" placeholder="请输入键值" /><button onclick="if(this.previousSibling.value)mycookie.remove(this.previousSibling.value);location.reload();">删除</button></p>
 </body>
 </html>
