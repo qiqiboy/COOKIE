@@ -1,6 +1,6 @@
 /**
- * COOKIE v2.1
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/03
+ * COOKIE v2.2
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/25
  */
 ;
 (function(ROOT, Struct, NS, undefined){
@@ -16,18 +16,20 @@
 		decode=decodeURIComponent;
 		
 	Struct.fn=Struct.prototype={
-		version:'2.0',
+		version:'2.2',
 		constructor:Struct,
 		init:function(name){
 			this.name=name||'';
 			return this.refresh();
 		},
 		refresh:function(){//刷新对象中cookies
-			this.cookies=this.getCookies();
+			if(this.cacheCookie!==document.cookie){
+				this.cookies=this.getCookies();
+			}
 			return this;
 		},
 		getCookies:function(){//解析document.cookie
-			var cookie=document.cookie||'',
+			var cookie=this.cacheCookie=document.cookie||'',
 				testReg=new RegExp('^'+this.getKey('').replace(/([\.\?\+\*\[\]\(\)\^\$\/])/g,"\\$1"),'i'),
 				subs=cookie.split(/;\s?/),
 				_subs,cks={},i=0,j=subs.length;
@@ -48,7 +50,7 @@
             return this.get(key)!=null;
         },
         get:function(key){//获取名为key的cookie的值
-            return this.cookies[key];
+            return this.refresh().cookies[key];
         },
         set:function(key,value,expire,path,domain,secure){//设置一个新cookie
 			var myck,
@@ -60,7 +62,7 @@
             if(domain&&domain!=location.hostname)myck+=';domain='+domain;
 			if(secure)myck+=';secure';
             document.cookie=myck;
-			return this.refresh().has(key);
+			return this.has(key);
         },
         remove:function(key,path,domain){//删除cookie
 			var paths=[],

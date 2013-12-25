@@ -25,3 +25,6 @@ myCookie.clear(path,domain); //清除所有cookie
 //注意：remove和clear方法，如果不设置path或domain，将会删除所有根域、子域、各个深度路径下的cookie。
 
 ````
+
+## DEMO 
+http://u.boy.im/COOKIE/
