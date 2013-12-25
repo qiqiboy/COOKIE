@@ -20,7 +20,15 @@
 		constructor:Struct,
 		init:function(name){
 			this.name=name||'';
-			return this.refresh();
+			return this.test();
+		},
+		test:function(){
+			try{
+				this.support=this.set('^_^',1) && this.remove('^_^');
+			}catch(e){
+				this.support=false;
+			}
+			return this;
 		},
 		refresh:function(){//刷新对象中cookies
 			if(this.cacheCookie!==document.cookie){
@@ -138,7 +146,7 @@
 		}
 	}
 	
-	return ROOT[NS]=Struct.refresh();
+	return ROOT[NS]=Struct.test();
 	
 })(window, function(name){
 	return new arguments.callee.fn.init(name);

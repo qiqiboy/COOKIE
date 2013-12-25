@@ -13,12 +13,22 @@
 <script type="text/javascript">
 	var key;
 	document.write('<h3>当前页面中所有cookie如下：</h3>');
+	if(COOKIE.support){
+		document.write('<h3>支持cookie读写</h3>');
+	}else{
+		document.write('<h3>不支持cookie读写</h3>');
+	}
 	for(key in COOKIE.cookies){
 		document.writeln(key+':'+COOKIE.cookies[key]);
 	}
 
 	var mycookie=COOKIE('myName');
 	document.write('<h3>当前页面"myName"下的cookie如下：</h3>');
+	if(mycookie.support){
+		document.write('<h3>支持cookie读写</h3>');
+	}else{
+		document.write('<h3>不支持cookie读写</h3>');
+	}
 	for(key in mycookie.cookies){
 		document.writeln(key+':'+mycookie.cookies[key]);
 	}
