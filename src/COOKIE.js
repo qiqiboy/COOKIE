@@ -104,7 +104,7 @@
 			return !!path||!!domain||!this.has(key);
         },
 		clear:function(path,domain){//清除所引用的全部cookie
-			var key, cookies=this.cookies;
+			var key, cookies=this.refresh().cookies;
 			for(key in cookies){
 				this.remove(key,path,domain);
 			}
