@@ -37,7 +37,7 @@
 				_subs=subs[i].split('=');
 				_subs[0]=decode(_subs[0]);
 				if(testReg.test(_subs[0])){
-					cks[decode(_subs[0].replace(testReg,''))]=decode(_subs.slice(1).join('='));
+					cks[_subs[0].replace(testReg,'')]=decode(_subs.slice(1).join('='));
 				}
 			}
 			return cks;
