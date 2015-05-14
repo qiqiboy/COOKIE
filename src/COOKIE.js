@@ -148,6 +148,6 @@
 	
 	return ROOT[NS]=Struct.test();
 	
-})(window, function self(name){
-	return new self.fn.init(name);
+})(window, function(name){
+	return new arguments.callee.fn.init(name);
 }, 'COOKIE');
