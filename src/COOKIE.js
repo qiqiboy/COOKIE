@@ -148,7 +148,7 @@
 	
     if(typeof define=='function' && define.amd){
         define(NS,function(){
-            return struct;
+            return Struct;
         });
     }else ROOT[NS]=Struct.test();
 	
