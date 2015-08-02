@@ -146,7 +146,11 @@
 		}
 	}
 	
-	return ROOT[NS]=Struct.test();
+    if(typeof define=='function' && define.amd){
+        define(NS,function(){
+            return struct;
+        });
+    }else ROOT[NS]=Struct.test();
 	
 })(window, function(name){
 	return new arguments.callee.fn.init(name);
