@@ -1,0 +1,19 @@
+{
+  "name": "cookie",
+  "version": "1.0.0",
+  "description": "COOKIE ======",
+  "main": "src/COOKIE.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://qiqiboy@github.com/qiqiboy/COOKIE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiqiboy/COOKIE/issues"
+  },
+  "homepage": "https://github.com/qiqiboy/COOKIE#readme"
+}

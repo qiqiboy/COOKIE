@@ -145,13 +145,14 @@
 			}
 		}
 	}
-	
-    if(typeof define=='function' && define.amd){
-        define(NS,function(){
-            return Struct;
+
+    if (typeof define === 'function' && define.amd) {
+        define(function(){
+            return Struct.test();
         });
-    }else ROOT[NS]=Struct.test();
-	
+    } else if (typeof exports === 'object') {
+        module.exports = Struct.test();
+    } else ROOT[NS]=Struct.test();
 })(window, function(name){
 	return new arguments.callee.fn.init(name);
 }, 'COOKIE');
